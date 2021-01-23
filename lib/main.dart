@@ -44,37 +44,39 @@ class DogWalksApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0;
+
+  final List<Widget> _children = [
+    WalksPage(),
+    EditProfilePage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return WalksPage();
-    // return CupertinoPageScaffold(
-    //   navigationBar: CupertinoNavigationBar(
-    //     backgroundColor: Colors.green[800],
-    //     middle: Text(
-    //       "Walks",
-    //       style: TextStyle(color: Colors.white, fontSize: 20.0),
-    //     ),
-    //     trailing: CupertinoButton(
-    //       padding: EdgeInsets.zero,
-    //       child: Icon(Icons.add, color: Colors.white),
-    //       onPressed: () {
-    //         print("pressed");
-    //       },
-    //     ),
-    //   ),
-    //   child: ListView.builder(
-    //     padding: EdgeInsets.all(16),
-    //     itemCount: 10,
-    //     itemBuilder: (BuildContext context, int index) {
-    //       return Container(
-    //         margin: EdgeInsets.all(16),
-    //         color: (index % 2 == 0 ? Colors.blue : Colors.red),
-    //         height: 50,
-    //         child: Center(child: Text("Walk Item")),
-    //       );
-    //     },
-    //   ),
-    // );
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+              label: "Walks", icon: Icon(Icons.directions_walk)),
+          BottomNavigationBarItem(label: "Edit Profile", icon: Icon(Icons.edit))
+        ],
+        onTap: onTabTapped,
+        selectedItemColor: Colors.red[900],
+        currentIndex: _currentIndex,
+      ),
+      body: _children[_currentIndex],
+    );
+  }
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 }
