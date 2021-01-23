@@ -39,6 +39,8 @@ class DogWalksApp extends StatelessWidget {
       return MaterialApp(
         home: HomeScreen(),
         title: "Dog Walks",
+        theme: ThemeData(
+            bottomAppBarTheme: BottomAppBarTheme(color: Colors.red[900])),
       );
     }
   }
