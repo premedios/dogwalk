@@ -1,7 +1,6 @@
+import 'package:DogWalk/Component/CustomExpanded.dart';
 import 'package:DogWalk/Component/ProfileHeader.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class WalksPage extends StatefulWidget {
   @override
@@ -13,14 +12,7 @@ class _WalksPageState extends State<WalksPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: [
-          ProfileHeaderStatic(),
-          Expanded(
-              flex: 1,
-              child: Lottie.asset(
-                  'animations/9711-payment-from-illustration-animation.json',
-                  frameRate: FrameRate(50)))
-        ],
+        children: [ProfileHeaderStatic(), CustomExpanded()],
       ),
     );
   }
