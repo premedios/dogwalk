@@ -8,19 +8,21 @@ class CustomExpanded extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (Platform.isIOS) {
-      return SafeArea(
-        child: Expanded(
-            flex: 1,
+      return Expanded(
+          flex: 1,
+          child: SafeArea(
             child: Lottie.asset(
                 'animations/9711-payment-from-illustration-animation.json',
-                alignment: Alignment.center)),
-      );
+                alignment: Alignment.center),
+          ));
     } else {
       return Expanded(
           flex: 1,
-          child: Lottie.asset(
-              'animations/9711-payment-from-illustration-animation.json',
-              alignment: Alignment.center));
+          child: SafeArea(
+            child: Lottie.asset(
+                'animations/9711-payment-from-illustration-animation.json',
+                alignment: Alignment.center),
+          ));
     }
   }
 }
