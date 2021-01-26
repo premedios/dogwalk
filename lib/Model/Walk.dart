@@ -1,5 +1,4 @@
 import 'package:DogWalk/Helper/Storage.dart';
-import './Dog.dart';
 
 class Walk {
   int id;
@@ -29,5 +28,6 @@ class Walk {
         map[StorageManager.WALKS_COLUMN_STARTTIME]);
     endTime = DateTime.fromMillisecondsSinceEpoch(
         map[StorageManager.WALKS_COLUMN_ENDTIME]);
+    bagsUsed = map[StorageManager.WALKS_COLUMN_BAGSUSED];
   }
 }
