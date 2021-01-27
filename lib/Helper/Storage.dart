@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:DogWalk/Model/Dog.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -22,13 +23,10 @@ class StorageManager {
   static const WALKSESSIONS_COLUMN_WALKID = "walk_id";
   static const WALKSESSIONS_COLUMN_DOGID = "dog_id";
 
-  static final StorageManager _manager = StorageManager._();
+  StorageManager._();
+  static final StorageManager manager = StorageManager._();
 
   Database _db;
-
-  factory StorageManager() {
-    return _manager;
-  }
 
   Future<Database> get db async {
     if (_db != null) {
@@ -38,8 +36,6 @@ class StorageManager {
     _db = await createDB();
     return _db;
   }
-
-  StorageManager._() {}
 
   Future<Database> createDB() async {
     return await openDatabase(
@@ -67,5 +63,16 @@ class StorageManager {
             ")");
       },
     );
+  }
+
+  Future<List<Dog>> dogs() async {
+    final Database database = await db;
+
+    final List<Map<String, dynamic>> maps =
+        await database.query(DOGS_TABLE_NAME);
+
+    return List.generate(maps.length, (index) {
+      return Dog.fromMap(maps[index]);
+    });
   }
 }
