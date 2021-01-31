@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../Model/Dog.dart';
 
-class ProfileHeaderStatic extends StatelessWidget {
+class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

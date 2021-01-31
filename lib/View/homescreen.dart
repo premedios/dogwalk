@@ -1,9 +1,13 @@
+import 'package:DogWalk/Model/Dog.dart';
 import 'package:DogWalk/View/walkspage.dart';
 import 'package:flutter/material.dart';
 
 import 'editprofilepage.dart';
 
 class HomeScreen extends StatefulWidget {
+  final List<Dog> dogs;
+  const HomeScreen(this.dogs);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -11,10 +15,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _children = [
-    WalksPage(),
-    EditProfilePage(),
-  ];
+  List<Widget> _children;
+
+  void initState() {
+    _children = [
+      WalksPage(widget.dogs),
+      EditProfilePage(widget.dogs),
+    ];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

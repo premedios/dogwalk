@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import '../Model/Dog.dart';
 
 class EditProfilePage extends StatefulWidget {
-  EditProfilePage({Key key}) : super(key: key);
+  final List<Dog> dogs;
+  EditProfilePage(this.dogs);
 
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
