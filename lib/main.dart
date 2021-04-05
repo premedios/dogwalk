@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:DogWalk/Helper/Storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +22,17 @@ class DogWalksApp extends StatelessWidget {
 
           if (snapshot.hasData) {
             List<Dog> dogs = snapshot.data;
-            widget = MaterialApp(
-              home: dogs.length > 0 ? HomeScreen(dogs) : AddDogScreen(),
-              title: "Dog Walks",
-            );
+            if (Platform.isIOS) {
+              widget = CupertinoApp(
+                home: dogs.length > 0 ? HomeScreen(dogs) : AddDogScreen(),
+                title: "Dog Walks",
+              );
+            } else {
+              widget = MaterialApp(
+                home: dogs.length > 0 ? HomeScreen(dogs) : AddDogScreen(),
+                title: "Dog Walks",
+              );
+            }
           } else if (snapshot.hasError) {
             widget = MaterialApp(
                 home: Container(child: Text("Error")), title: "Dog Walks");
